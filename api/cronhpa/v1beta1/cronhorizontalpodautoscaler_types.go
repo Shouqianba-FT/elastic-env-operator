@@ -84,7 +84,7 @@ type CronHorizontalPodAutoscalerStatus struct {
 	Conditions []Condition `json:"conditions,omitempty"`
 }
 
-// +kubebuilder:object:root=true
+// +kubebuilder:object:root=false
 // +kubebuilder:resource:shortName=cronhpa
 // CronHorizontalPodAutoscaler is the Schema for the cronhorizontalpodautoscalers API
 type CronHorizontalPodAutoscaler struct {
@@ -95,7 +95,7 @@ type CronHorizontalPodAutoscaler struct {
 	Status CronHorizontalPodAutoscalerStatus `json:"status,omitempty"`
 }
 
-// +kubebuilder:object:root=true
+// +kubebuilder:object:root=false
 // CronHorizontalPodAutoscalerList contains a list of CronHorizontalPodAutoscaler
 type CronHorizontalPodAutoscalerList struct {
 	metav1.TypeMeta `json:",inline"`
