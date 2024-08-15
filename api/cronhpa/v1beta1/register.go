@@ -18,6 +18,7 @@ limitations under the License.
 
 // Package v1beta1 contains API Schema definitions for the autoscaling v1beta1 API group
 // +kubebuilder:object:generate=false
+// +kubebuilder:skip
 // +groupName=autoscaling.alibabacloud.com
 package v1beta1
 
