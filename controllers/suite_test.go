@@ -97,12 +97,7 @@ var _ = BeforeSuite(func() {
 	handler.SetK8sScheme(mgr.GetScheme())
 	handler.SetK8sLog(ctrl.Log.WithName("domain handler"))
 
-	err = (&sqbDeploymentReconciler{
-		Client: mgr.GetClient(),
-		Log:    ctrl.Log.WithName("controllers").WithName("SQBDeployment"),
-		Scheme: mgr.GetScheme(),
-	}).SetupWithManager(mgr)
-	Expect(err).ToNot(HaveOccurred())
+	Expect(NewSQBDeploymentReconciler(mgr)).ToNot(HaveOccurred())
 
 	err = (&SQBPlaneReconciler{
 		Client: mgr.GetClient(),
