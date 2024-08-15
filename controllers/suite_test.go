@@ -97,7 +97,7 @@ var _ = BeforeSuite(func() {
 	handler.SetK8sScheme(mgr.GetScheme())
 	handler.SetK8sLog(ctrl.Log.WithName("domain handler"))
 
-	err = (&SQBDeploymentReconciler{
+	err = (&sqbDeploymentReconciler{
 		Client: mgr.GetClient(),
 		Log:    ctrl.Log.WithName("controllers").WithName("SQBDeployment"),
 		Scheme: mgr.GetScheme(),
