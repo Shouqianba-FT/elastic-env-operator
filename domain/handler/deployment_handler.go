@@ -32,7 +32,7 @@ type deploymentHandler struct {
 	req           ctrl.Request
 }
 
-func NewDeploymentHandler(sqbdeployment *qav1alpha1.SQBDeployment, ctx context.Context) SQBReconciler {
+func NewDeploymentHandler(sqbdeployment *qav1alpha1.SQBDeployment, ctx context.Context) SQBHandler {
 	return &deploymentHandler{sqbdeployment: sqbdeployment, ctx: ctx}
 }
 
