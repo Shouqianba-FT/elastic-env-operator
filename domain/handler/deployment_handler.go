@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/wosai/elastic-env-operator/domain/common"
 	"math"
 	"strings"
 	"time"
@@ -22,6 +21,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/controller/controllerutil"
 
 	qav1alpha1 "github.com/wosai/elastic-env-operator/api/v1alpha1"
+	"github.com/wosai/elastic-env-operator/domain/common"
 	"github.com/wosai/elastic-env-operator/domain/entity"
 	"github.com/wosai/elastic-env-operator/domain/util"
 )
@@ -32,11 +32,11 @@ type deploymentHandler struct {
 	req           ctrl.Request
 }
 
-func NewDeploymentHandler(sqbdeployment *qav1alpha1.SQBDeployment, ctx context.Context) SQBHandler {
+func NewDeploymentHandler(sqbdeployment *qav1alpha1.SQBDeployment, ctx context.Context) SQBReconciler {
 	return &deploymentHandler{sqbdeployment: sqbdeployment, ctx: ctx}
 }
 
-func NewDeploymentHandlerWithReq(req ctrl.Request, ctx context.Context) SQBHandler {
+func NewDeploymentHandlerWithReq(req ctrl.Request, ctx context.Context) SQBReconciler {
 	return &deploymentHandler{req: req, ctx: ctx}
 }
 

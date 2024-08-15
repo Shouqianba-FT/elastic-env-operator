@@ -18,6 +18,7 @@ package controllers
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/go-logr/logr"
 	"k8s.io/apimachinery/pkg/runtime"
@@ -31,6 +32,12 @@ import (
 	"github.com/wosai/elastic-env-operator/domain/common"
 	"github.com/wosai/elastic-env-operator/domain/handler"
 )
+
+var cronHPARefIndexFunc = func(obj interface{}) ([]string, error) {
+	cronHPA := obj.(*cronhpav1beta1.CronHorizontalPodAutoscaler)
+
+	return []string{fmt.Sprintf("%s.%s.%s", cronHPA.Spec.ScaleTargetRef.ApiVersion, cronHPA.Spec.ScaleTargetRef.Kind, cronHPA.Spec.ScaleTargetRef.Name)}, nil
+}
 
 // sqbDeploymentReconciler reconciles a SQBDeployment object
 type sqbDeploymentReconciler struct {
@@ -48,7 +55,7 @@ func NewSQBDeploymentReconciler(mgr ctrl.Manager) error {
 	}
 
 	if innerErr := cronHPAInformer.AddIndexers(map[string]cache.IndexFunc{
-		common.CronHPAIndexByRef: common.CronHPARefIndexFunc,
+		common.CronHPAIndexByRef: cronHPARefIndexFunc,
 	}); innerErr != nil {
 		return innerErr
 	}
