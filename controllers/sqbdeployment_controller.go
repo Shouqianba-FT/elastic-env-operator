@@ -36,7 +36,7 @@ import (
 var cronHPARefIndexFunc = func(obj interface{}) ([]string, error) {
 	cronHPA := obj.(*cronhpav1beta1.CronHorizontalPodAutoscaler)
 
-	return []string{fmt.Sprintf("%s.%s.%s", cronHPA.Spec.ScaleTargetRef.ApiVersion, cronHPA.Spec.ScaleTargetRef.Kind, cronHPA.Spec.ScaleTargetRef.Name)}, nil
+	return []string{fmt.Sprintf("%s.%s.%s.%s", cronHPA.Spec.ScaleTargetRef.ApiVersion, cronHPA.Spec.ScaleTargetRef.Kind, cronHPA.GetNamespace(), cronHPA.Spec.ScaleTargetRef.Name)}, nil
 }
 
 // sqbDeploymentReconciler reconciles a SQBDeployment object
