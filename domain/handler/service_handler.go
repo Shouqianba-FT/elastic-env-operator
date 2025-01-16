@@ -53,8 +53,8 @@ func (h *serviceHandler) CreateOrUpdate() error {
 	//	service.Spec.Selector[entity.PlaneKey] = entity.ConfigMapData.BaseFlag()
 	//	service.Labels[entity.PlaneKey] = entity.ConfigMapData.BaseFlag()
 	//}
-	// 去掉selector的version字段
-	delete(service.Spec.Selector, entity.PlaneKey)
+	//// 去掉selector的version字段
+	//delete(service.Spec.Selector, entity.PlaneKey)
 	return CreateOrUpdate(h.ctx, service)
 }
 
